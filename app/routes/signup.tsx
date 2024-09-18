@@ -3,7 +3,8 @@ import { useState } from 'react';
 import { Link, useNavigate } from '@remix-run/react';
 
 export default function SignUp() {
-  const [name, setName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -15,7 +16,7 @@ export default function SignUp() {
     setError('');
 
     // Basic validation
-    if (!name || !email || !password || !confirmPassword) {
+    if (!firstName|| !lastName || !email || !password || !confirmPassword) {
       setError('Please fill in all fields.');
       return;
     }
@@ -27,7 +28,7 @@ export default function SignUp() {
 
     // Here you would typically make an API call to register the user
     // For this example, we'll just simulate a successful registration
-    console.log('Signing up with:', { name, email, password });
+    console.log('Signing up with:', { firstName, lastName, email, password });
     
     // Simulate API call delay
     setTimeout(() => {
@@ -46,19 +47,37 @@ export default function SignUp() {
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                Full Name
+              <label htmlFor="first_name" className="block text-sm font-medium text-gray-700">
+                First Name
               </label>
               <div className="mt-1">
                 <input
-                  id="name"
-                  name="name"
+                  id="first_name"
+                  name="first_name"
                   type="text"
-                  autoComplete="name"
+                  autoComplete="first_name"
                   required
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                />
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor="last_name" className="block text-sm font-medium text-gray-700">
+                Last Name
+              </label>
+              <div className="mt-1">
+                <input
+                  id="last_name"
+                  name="last_name"
+                  type="text"
+                  autoComplete="last_name"
+                  required
+                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
                 />
               </div>
             </div>
